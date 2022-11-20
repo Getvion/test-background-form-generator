@@ -1,1 +1,11 @@
-@import "modern-css-reset/dist/reset.min.css";
+@import 'modern-css-reset/dist/reset.min.css';
+@import './app/styles/fonts.scss';
+
+html,
+body {
+  font-family: 'PT Sans', sans-serif;
+  font-weight: 400;
+  font-size: 17px;
+  line-height: 22px;
+  color: #000;
+}
