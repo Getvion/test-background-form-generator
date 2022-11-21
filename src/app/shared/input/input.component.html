@@ -1,1 +1,12 @@
-<p>input works!</p>
+<label class="input__label" [for]="labelValue">
+  <span class="input__text">
+    {{ labelValue }}<span *ngIf="isRequired" class="input__required">*</span>
+  </span>
+  <div class="input__add">
+    <div class="input__container">
+      <input class="input__field" type="text" [id]="labelValue" />
+      <p *ngIf="inputDescription" class="input__description">{{ inputDescription }}</p>
+    </div>
+    <app-add-input *ngIf="isExtendable"></app-add-input>
+  </div>
+</label>
