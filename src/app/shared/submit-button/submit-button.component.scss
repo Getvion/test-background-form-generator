@@ -1,0 +1,21 @@
+.button {
+  padding: 15px 30px;
+  background-color: #ffe783;
+  border-radius: 3px;
+  transition: all 0.15s ease;
+  border: none;
+  box-shadow: 0 1px 0 0 #c7b258;
+  cursor: pointer;
+
+  &:hover {
+    opacity: 0.7;
+  }
+
+  &:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+    &:hover {
+      opacity: 0.4;
+    }
+  }
+}
