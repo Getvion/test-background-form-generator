@@ -1,1 +1,25 @@
-<p>dropdown works!</p>
+<div class="dropdown" (mouseenter)="state = 0" (mouseleave)="state = 1">
+  <label class="dropdown__label">
+    <span class="dropdown__label__text">
+      {{ labelValue }}<span *ngIf="isRequired" class="dropdown__label--required">*</span>
+    </span>
+  </label>
+  <div class="dropdown__container">
+    <button
+      [disabled]="isDisabled"
+      class="dropdown__button"
+      (click)="showMenu = !showMenu"
+      [style.width.px]="width"
+    >
+      <span class="display-text">
+        {{ selectedItem || placeholder }}
+      </span>
+      <span class="arrow down"></span>
+    </button>
+    <ul class="dropdown__content" [class.show]="showMenu">
+      <li class="dropdown__content-link" *ngFor="let elem of data" (click)="valueChange(elem)">
+        {{ elem }}
+      </li>
+    </ul>
+  </div>
+</div>
