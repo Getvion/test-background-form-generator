@@ -1,20 +1,17 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { NewItemInFormType } from 'src/app/app.component';
 
 @Component({
   selector: 'app-number-input',
   templateUrl: './number-input.component.html',
   styleUrls: ['./number-input.component.scss'],
 })
-export class NumberInputComponent implements OnInit {
+export class NumberInputComponent {
   @Input() labelValue: string = '';
 
   @Input() isRequired = false;
 
   inputValue: number = 1;
-
-  constructor() {}
-
-  ngOnInit(): void {}
 
   onIncrease() {
     this.inputValue++;
@@ -22,5 +19,11 @@ export class NumberInputComponent implements OnInit {
 
   onDecrease() {
     this.inputValue--;
+  }
+
+  @Output() newItemEvent = new EventEmitter<NewItemInFormType>();
+
+  addNewItem(key: string) {
+    this.newItemEvent.emit({ [key]: this.inputValue });
   }
 }

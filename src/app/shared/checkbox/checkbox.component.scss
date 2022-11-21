@@ -7,19 +7,28 @@
   width: 140px;
 }
 
-.checkbox__container {
+.checkbox__content {
+  max-width: 484px;
+  width: 100%;
   display: flex;
-  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
 }
 
 .checkbox__label {
-  display: inline-flex;
+  display: flex;
   align-items: center;
   position: relative;
+  width: calc(100% / 2 - 5px);
 
   &.checkbox__label--all {
     font-weight: 700;
   }
+}
+
+.checkbox__container {
+  display: flex;
+  align-items: center;
 }
 
 .checkbox__input {
@@ -27,6 +36,7 @@
   position: absolute;
   width: 22px;
   height: 22px;
+  cursor: pointer;
 }
 
 .checker {

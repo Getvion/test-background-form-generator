@@ -1,31 +1,33 @@
 <div class="checkbox">
-  <span class="checkbox__text">{{ text }} </span>
+  <span class="checkbox__text">{{ labelText }} </span>
 
-  <label *ngFor="let elem of checkboxData" [for]="elem.text" class="checkbox__label">
-    <div class="checkbox__container">
-      <input
-        type="checkbox"
-        class="checkbox__input"
-        (change)="onChanged($event)"
-        [checked]="elem.isChecked"
-        name="{{ elem.text }}"
-      />
-      <span class="checker"></span>
-    </div>
-    <span> {{ elem.text }} </span>
-  </label>
+  <div class="checkbox__content">
+    <label *ngFor="let elem of checkboxData" [for]="elem.text" class="checkbox__label">
+      <div class="checkbox__container">
+        <input
+          type="checkbox"
+          class="checkbox__input"
+          (change)="onChanged($event)"
+          [checked]="elem.isChecked"
+          name="{{ elem.text }}"
+        />
+        <span class="checker"></span>
+      </div>
+      <span> {{ elem.text }} </span>
+    </label>
 
-  <label *ngIf="checkboxData.length > 1" class="checkbox__label checkbox__label--all" for="all">
-    <div class="checkbox__container">
-      <input
-        type="checkbox"
-        class="checkbox__input"
-        (change)="onAllCheck()"
-        [checked]="isAllChecked"
-        name="all"
-      />
-      <span class="checker"></span>
-    </div>
-    <span> Выделить все </span>
-  </label>
+    <label *ngIf="checkboxData.length > 1" class="checkbox__label checkbox__label--all" for="all">
+      <div class="checkbox__container">
+        <input
+          type="checkbox"
+          class="checkbox__input"
+          (change)="onAllCheck()"
+          [checked]="isAllChecked"
+          name="all"
+        />
+        <span class="checker"></span>
+      </div>
+      <span> Выделить все </span>
+    </label>
+  </div>
 </div>

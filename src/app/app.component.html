@@ -1,7 +1,49 @@
-<div>
-  <app-input></app-input>
-  <app-add-input></app-add-input>
-  <app-checkbox></app-checkbox>
-  <app-dropdown></app-dropdown>
-  <app-number-input></app-number-input>
+<div class="form" onsubmit="onFormSubmit()">
+  <h3 class="form__title">Анкета</h3>
+  <div class="form__content">
+    <app-input
+      *ngIf="userData.name.labelText"
+      [inputWidth]="userData.name.inputSize"
+      [labelValue]="userData.name.labelText"
+      [isRequired]="userData.name.required"
+      (newItemEvent)="addItem($event)"
+    ></app-input>
+    <app-number-input
+      *ngIf="userData.age.labelText"
+      [labelValue]="userData.age.labelText"
+      [isRequired]="userData.age.required"
+      (newItemEvent)="addItem($event)"
+    ></app-number-input>
+    <app-dropdown
+      *ngIf="userData.family.labelText"
+      [placeholder]="userData.family.items[0]"
+      [data]="userData.family.items"
+      [labelValue]="userData.family.labelText"
+      [isRequired]="userData.family.required"
+    ></app-dropdown>
+    <app-input
+      *ngIf="userData.university.labelText"
+      inputWidth="middle"
+      [labelValue]="userData.university.labelText"
+      [isExtendable]="userData.university.isExtendable"
+      [extendableItems]="userData.university.items"
+      [inputDescriptionText]="userData.university.descriptoin"
+      (newItemEvent)="addItem($event)"
+    >
+    </app-input>
+    <app-dropdown
+      *ngIf="userData.birthPlace.labelText"
+      [placeholder]="userData.birthPlace.items[0]"
+      [data]="userData.birthPlace.items"
+      [labelValue]="userData.birthPlace.labelText"
+    ></app-dropdown>
+    <app-checkbox
+      *ngIf="userData.skills.labelText"
+      [checkboxData]="userData.skills.items"
+      [labelText]="userData.skills.labelText"
+    ></app-checkbox>
+    <app-submit-button class="form__button" buttonType="submit" [isDisabled]="isButtonDisabled">
+      Отправить
+    </app-submit-button>
+  </div>
 </div>

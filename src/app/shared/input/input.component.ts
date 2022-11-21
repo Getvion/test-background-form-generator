@@ -1,4 +1,7 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+
+import { InputSize } from 'src/app/@types/IUserFormData';
+import { NewItemInFormType } from 'src/app/app.component';
 
 @Component({
   selector: 'app-input',
@@ -16,5 +19,13 @@ export class InputComponent {
 
   @Input() isExtendable = false;
 
-  @Input() inputWidth: 'middle' | 'long' | 'short' = 'long';
+  @Input() inputWidth: InputSize = 'long';
+
+  @Input() extendableItems: { inputType: string; inputSize: InputSize }[] = [];
+
+  @Output() newItemEvent = new EventEmitter<NewItemInFormType>();
+
+  addNewItem(key: string, value: string) {
+    this.newItemEvent.emit({ [key]: value });
+  }
 }

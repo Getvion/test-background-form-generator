@@ -12,6 +12,8 @@ export class CheckboxComponent {
 
   @Input() checkboxData: { text: string; isChecked: boolean }[] = [];
 
+  @Input() labelText: string = '';
+
   public isAllChecked = false;
   // public isChecked = false;
 
