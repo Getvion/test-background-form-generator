@@ -6,7 +6,17 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./add-input.component.scss'],
 })
 export class AddInputComponent implements OnInit {
-  constructor() {}
+  isActive = false;
+
+  // constructor() {}
 
   ngOnInit(): void {}
+
+  toggleVeiw() {
+    this.isActive = !this.isActive;
+  }
+
+  onDelete() {
+    this.toggleVeiw();
+  }
 }

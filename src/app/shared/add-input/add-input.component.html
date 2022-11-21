@@ -1,1 +1,15 @@
-<p>add-input works!</p>
+<button (click)="toggleVeiw()" class="button">
+  <img
+    *ngIf="isActive"
+    (click)="onDelete()"
+    src="../../../assets/images/icons/delete.svg"
+    alt="Удалить"
+    class="button__img button__img--delete"
+  />
+  <img
+    class="button__img button__img--add"
+    src="../../../assets/images/icons/add.svg"
+    alt="Добавить"
+  />
+  Добавить еще
+</button>
