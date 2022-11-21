@@ -15,7 +15,45 @@
 ### Пример JSON файла для создания формы:
 
 ```
-{}
+name: {
+  required: true,
+  isExtendable: false,
+  labelText: 'Имя',
+  inputType: 'text',
+  inputSize: 'long',
+},
+age: {
+  required: true,
+  labelText: 'Возраст',
+  inputType: 'number',
+},
+family: {
+  required: true,
+  labelText: 'Семейное положение',
+  items: ['Женат / замужем', 'Не женат / не замужем'],
+},
+university: {
+  descriptoin: 'Укажите заведения в которых вы учились',
+  required: false,
+  labelText: 'ВУЗ',
+  isExtendable: true,
+  items: [{ inputType: 'text', inputSize: 'middle' }],
+},
+birthPlace: {
+  required: false,
+  labelText: 'Семейное положение',
+  items: [Не важно',Астрахань',Волгоград',Волжский',Ростов-на-Дону',Саратов',Элиста'],
+},
+skills: {
+  required: false,
+  labelText: 'Навыки',
+  items: [
+    { text: 'Общение', isChecked: true },
+    { text: 'Вождение', isChecked: false },
+    { text: 'Иностранные языки', isChecked: true },
+  ],
+},
+
 ```
 
 ---
