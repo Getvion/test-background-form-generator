@@ -2,11 +2,9 @@
   <span class="input__text">
     {{ labelValue }}<span *ngIf="isRequired" class="input__required">*</span>
   </span>
-  <div class="input__add">
-    <div class="input__container">
-      <input class="input__field" type="text" [id]="labelValue" />
-      <p *ngIf="inputDescription" class="input__description">{{ inputDescription }}</p>
-    </div>
+  <div [ngClass]="{ input__description: inputDescriptionText, input__add: true }">
+    <input [ngClass]="inputWidth" class="input__field" type="text" [id]="labelValue" />
+    <p *ngIf="inputDescriptionText" class="input__description-text">{{ inputDescriptionText }}</p>
     <app-add-input *ngIf="isExtendable"></app-add-input>
   </div>
 </label>

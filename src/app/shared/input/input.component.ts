@@ -12,7 +12,9 @@ export class InputComponent {
 
   @Input() isRequired = true;
 
-  @Input() inputDescription: string = '';
+  @Input() inputDescriptionText: string = '';
 
   @Input() isExtendable = false;
+
+  @Input() inputWidth: 'middle' | 'long' | 'short' = 'long';
 }
