@@ -5,7 +5,8 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
-    "build:gh": "ng build --base-href /test-background-form-generator/ --deploy-url /test-background-form-generator/",
+    "predeploy": "ng build --base-href=/test-background-form-generator/",
+    "deploy": "npx angular-cli-ghpages --dir=docs",
     "watch": "ng build --watch --configuration development",
     "lint": "ng lint",
     "lint:fix": "ng lint --fix"
@@ -35,6 +36,7 @@
     "@angular/compiler-cli": "^14.2.0",
     "@typescript-eslint/eslint-plugin": "5.43.0",
     "@typescript-eslint/parser": "5.43.0",
+    "angular-cli-ghpages": "^1.0.4",
     "eslint": "^8.27.0",
     "eslint-config-airbnb-typescript": "^17.0.0",
     "eslint-config-prettier": "^8.5.0",
