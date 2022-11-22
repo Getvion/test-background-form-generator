@@ -74,6 +74,10 @@
 
   &:hover {
     cursor: pointer;
-    background: #ffe783;
+    background-color: #ffe783;
+  }
+
+  &.selected {
+    background-color: #ffda42;
   }
 }

@@ -1,5 +1,6 @@
-import { Component, Input, forwardRef, HostListener } from '@angular/core';
+import { Component, Input, forwardRef, HostListener, Output, EventEmitter } from '@angular/core';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
+import { NewItemInFormType } from 'src/app/app.component';
 
 export type IDropdownItem = string[];
 
@@ -22,13 +23,11 @@ export const CUSTOM_INPUT_CONTROL_VALUE_ACCESSOR: any = {
   providers: [CUSTOM_INPUT_CONTROL_VALUE_ACCESSOR],
 })
 export class DropdownComponent {
-  showMenu: boolean;
-
-  isDisabled: boolean;
+  showMenu = false;
 
   selectedItem: string = '';
 
-  state: DropdownMouseState;
+  state: DropdownMouseState = DropdownMouseState.outside;
 
   @Input() isRequired = false;
 
@@ -40,24 +39,23 @@ export class DropdownComponent {
 
   @Input() labelValue: string = '';
 
-  @HostListener('document:click') clickedOutside() {
+  @Output() newItemEvent = new EventEmitter<NewItemInFormType>();
+
+  @HostListener('document:click')
+  clickedOutside() {
     if (this.state == DropdownMouseState.outside) {
       this.showMenu = false;
     }
   }
 
-  constructor() {
-    this.showMenu = false;
-    this.isDisabled = false;
-    this.state = DropdownMouseState.outside;
-  }
-
-  valueChange(elem: string) {
+  valueChange(key: string, elem: string) {
     this.selectedItem = elem;
     this.showMenu = false;
+
+    this.addNewItem(key, elem);
   }
 
-  setDisabledState(isDisabled: boolean): void {
-    this.isDisabled = isDisabled;
+  addNewItem(key: string, value: string) {
+    this.newItemEvent.emit({ [key]: value });
   }
 }
