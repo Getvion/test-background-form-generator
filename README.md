@@ -4,13 +4,15 @@
 
 ---
 
-### Ссылка на готовый вариант
+### [Ссылка на готовый вариант](https://getvion.github.io/test-background-form-generator/)
 
 ### Запуск локально
 
 1. Скопируйте этот репозиторий с помощью команды `git clone git@github.com:Getvion/test-background-form-generator.git`
 2. Для установки зависимостей `npm i`
 3. После установки зависимостей введите каманду `ng serve`
+
+![preview-image](./src/assets/images/preview-image.png)
 
 ### Пример JSON файла для создания формы:
 
@@ -41,7 +43,7 @@ university: {
 },
 birthPlace: {
   required: false,
-  labelText: 'Семейное положение',
+  labelText: 'Место рождения',
   items: [Не важно',Астрахань',Волгоград',Волжский',Ростов-на-Дону',Саратов',Элиста'],
 },
 skills: {
