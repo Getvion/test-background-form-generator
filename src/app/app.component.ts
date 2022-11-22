@@ -4,7 +4,7 @@ import { IUserFormData } from './@types/IUserFormData';
 
 import { DataRequestsService } from './services/data-requests.service';
 
-export type NewItemInFormType = { [key: string]: string | number | boolean };
+export type NewItemInFormType = { [key: string]: string | number | string[] };
 
 @Component({
   selector: 'app-root',
@@ -51,20 +51,28 @@ export class AppComponent implements OnInit {
 
   isButtonDisabled = true;
 
-  //
   resultFormData = {};
 
-  addItem(newItem: NewItemInFormType) {
-    this.resultFormData = { ...this.resultFormData, ...newItem };
-    console.log(this.resultFormData);
-  }
-
-  //
   constructor(private dataRequest: DataRequestsService) {}
 
   async ngOnInit() {
     this.userData = await this.dataRequest.requestFormData();
   }
 
-  onFormSubmit() {}
+  addItem(newItem: NewItemInFormType) {
+    this.resultFormData = { ...this.resultFormData, ...newItem };
+
+    const requiredFieldsCount = Object.entries(this.userData).filter(
+      ([, values]) => values.required,
+    ).length;
+
+    const fieldsFilled = Object.entries(this.resultFormData).map(([, values]) => values).length;
+
+    this.isButtonDisabled = fieldsFilled >= requiredFieldsCount;
+  }
+
+  onFormSubmit() {
+    const formData = JSON.stringify(this.resultFormData);
+    alert(formData);
+  }
 }

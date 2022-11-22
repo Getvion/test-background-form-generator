@@ -3,18 +3,27 @@
     {{ labelValue }}<span *ngIf="isRequired" class="input__text__required">*</span>
   </span>
   <div class="input__content">
-    <input class="input" type="number" step="1" min="1" [value]="inputValue" id="labelValue " />
+    <input
+      #inputField
+      (change)="onChange(labelValue, inputField.value)"
+      class="input"
+      type="number"
+      step="1"
+      min="1"
+      [value]="inputValue"
+      id="labelValue"
+    />
     <span class="buttons">
       <button
         [disabled]="inputValue >= 99"
-        (click)="onIncrease()"
+        (click)="onIncrease(labelValue)"
         class="input__button input__button--up"
       >
         <span class="input__button--increase"></span>
       </button>
       <button
         [disabled]="inputValue <= 1"
-        (click)="onDecrease()"
+        (click)="onDecrease(labelValue)"
         class="input__button input__button--down"
       >
         <span class="input__button--decrease"></span>

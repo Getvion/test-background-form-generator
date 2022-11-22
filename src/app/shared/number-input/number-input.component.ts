@@ -11,19 +11,26 @@ export class NumberInputComponent {
 
   @Input() isRequired = false;
 
-  inputValue: number = 1;
-
-  onIncrease() {
-    this.inputValue++;
-  }
-
-  onDecrease() {
-    this.inputValue--;
-  }
-
   @Output() newItemEvent = new EventEmitter<NewItemInFormType>();
 
-  addNewItem(key: string) {
-    this.newItemEvent.emit({ [key]: this.inputValue });
+  inputValue: number = 1;
+
+  onIncrease(key: string) {
+    this.inputValue++;
+    this.addNewItem(key, this.inputValue);
+  }
+
+  onDecrease(key: string) {
+    this.inputValue--;
+    this.addNewItem(key, this.inputValue);
+  }
+
+  onChange(key: string, value: string) {
+    this.inputValue = Number(value);
+    this.addNewItem(key, this.inputValue);
+  }
+
+  addNewItem(key: string, inputValue: string | number) {
+    this.newItemEvent.emit({ [key]: inputValue });
   }
 }

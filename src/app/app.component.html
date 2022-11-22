@@ -20,6 +20,7 @@
       [data]="userData.family.items"
       [labelValue]="userData.family.labelText"
       [isRequired]="userData.family.required"
+      (newItemEvent)="addItem($event)"
     ></app-dropdown>
     <app-input
       *ngIf="userData.university.labelText"
@@ -36,13 +37,20 @@
       [placeholder]="userData.birthPlace.items[0]"
       [data]="userData.birthPlace.items"
       [labelValue]="userData.birthPlace.labelText"
+      (newItemEvent)="addItem($event)"
     ></app-dropdown>
     <app-checkbox
       *ngIf="userData.skills.labelText"
       [checkboxData]="userData.skills.items"
       [labelText]="userData.skills.labelText"
+      (newItemEvent)="addItem($event)"
     ></app-checkbox>
-    <app-submit-button class="form__button" buttonType="submit" [isDisabled]="isButtonDisabled">
+    <app-submit-button
+      class="form__button"
+      buttonType="submit"
+      [isDisabled]="isButtonDisabled"
+      (click)="onFormSubmit()"
+    >
       Отправить
     </app-submit-button>
   </div>
