@@ -5,6 +5,7 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
+    "build:gh": "ng build --base-href 'https://getvion.github.io/test-background-form-generator/'",
     "watch": "ng build --watch --configuration development",
     "lint": "ng lint",
     "lint:fix": "ng lint --fix"
