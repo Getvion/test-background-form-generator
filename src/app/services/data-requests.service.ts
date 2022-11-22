@@ -38,7 +38,7 @@ export class DataRequestsService {
       },
       birthPlace: {
         required: false,
-        labelText: 'Семейное положение',
+        labelText: 'Место рождения',
         items: [
           'Не важно',
           'Астрахань',

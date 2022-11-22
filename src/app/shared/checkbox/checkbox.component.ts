@@ -1,4 +1,5 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { NewItemInFormType } from 'src/app/app.component';
 
 @Component({
   selector: 'app-checkbox',
@@ -6,43 +7,42 @@ import { Component, Input } from '@angular/core';
   styleUrls: ['./checkbox.component.scss'],
 })
 export class CheckboxComponent {
-  // @Input() labelText: string = '';
-
-  @Input() text: string = '';
-
   @Input() checkboxData: { text: string; isChecked: boolean }[] = [];
 
   @Input() labelText: string = '';
 
-  public isAllChecked = false;
-  // public isChecked = false;
+  @Output() newItemEvent = new EventEmitter<NewItemInFormType>();
 
-  // public regOnChange = (elem: boolean) => {};
+  isAllChecked = false;
 
-  // public regOnTouched = () => {};
+  checkedElems: string[] = [];
 
-  // registerOnChange(fn: any): void {
-  // this.regOnChange = fn;
-  // }
+  onAllCheck() {
+    if (this.checkboxData.every((checkbox) => checkbox.isChecked)) {
+      this.checkboxData.forEach((checkbox) => (checkbox.isChecked = false));
 
-  // registerOnTouched(fn: any): void {
-  //   this.regOnTouched = fn;
-  // }
+      this.isAllChecked = false;
+      this.checkedElems = [];
+    } else {
+      this.checkboxData.forEach((checkbox) => {
+        checkbox.isChecked = true;
+        this.checkedElems.push(checkbox.text);
+      });
+    }
+    this.addNewItem('Навыки', this.checkedElems);
+  }
 
-  // writeValue(value: any) {
-  // pre-populate value
-  // if (value) {
-  // this.isChecked = value;
-  // }
-  // }
+  onChanged(skill: string, isChecked: boolean) {
+    this.checkedElems = isChecked
+      ? [...this.checkedElems, skill]
+      : this.checkedElems.filter((elem) => elem !== skill);
 
-  onAllCheck() {}
+    this.addNewItem('Навыки', this.checkedElems);
+  }
 
-  onChanged($event: Event) {
-    console.log($event);
+  addNewItem(key: string, value: string[]) {
+    const uniqeElems = [...new Set(value)];
 
-    // on change
-    // this.isChecked = ($event.target as HTMLInputElement).checked as boolean;
-    // this.regOnChange(($event.target as HTMLInputElement).checked);
+    this.newItemEvent.emit({ [key]: uniqeElems });
   }
 }

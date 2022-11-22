@@ -5,9 +5,10 @@
     <label *ngFor="let elem of checkboxData" [for]="elem.text" class="checkbox__label">
       <div class="checkbox__container">
         <input
+          #checkbox
           type="checkbox"
           class="checkbox__input"
-          (change)="onChanged($event)"
+          (change)="onChanged(elem.text, checkbox.checked)"
           [checked]="elem.isChecked"
           name="{{ elem.text }}"
         />
